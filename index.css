@@ -1,3 +1,54 @@
-span {
-    color: red;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid;
+    padding: 24px;
+}
+
+.logo {
+   width: 200px;
+}
+
+
+.nav-items ul {
+    display: flex;
+    list-style-type: none;
+    gap: 24;
+    color: rgb(236, 116, 30);
+    font-size: medium;
+    font-weight: bolder;
+}
+
+.res-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+.res-card {
+    width: 200px;
+    padding: 12px;
+    line-height: 34px;
+}
+
+.res-card:hover {
+    border: 1px solid;
+    cursor: pointer;
+}
+
+.search {
+    padding: 24px;
+}
+
+.img {
+    width: 100%;
+}
+ 
