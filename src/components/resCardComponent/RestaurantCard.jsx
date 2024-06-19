@@ -8,7 +8,7 @@ import {IMG_CDN_URL} from "../../utils/constant";
 
 const RestaurantCard = (props) => {
   const { resList } = props;
-  const {cloudinaryImageId, name, cuisines} = resList?.info
+  const {cloudinaryImageId, name, cuisines, avgRating} = resList?.info
   // console.log(resList);
   return (
     <div className="res-card" style={styles}>
@@ -19,6 +19,7 @@ const RestaurantCard = (props) => {
       />
       <h2>{name}</h2>
       <p>{cuisines.join(',')}</p>
+      <p>{"avgRating : " + avgRating}</p>
     </div>
   );
 };

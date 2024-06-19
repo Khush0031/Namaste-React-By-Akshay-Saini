@@ -285,5 +285,26 @@
 
         - we can use index's as a key but react official documents say don't use index as key 
         - But can be used for learning purpose
-    
-    
+
+## Lecture - 05 :- Let's Get Hooked.
+
+    * Folder Structure.
+        - Try to make modular
+    * Two Type's Of Expor/Import.
+
+      - 1 :- Default Export/Import
+      - 2 :- Named Export/Import
+
+    * React Hooks 
+        - Normal JS utility Function
+
+       * Multiple React Function :- 
+
+        Two Hooks which are very important.
+          - useState Hook. :-> State Variable in react.
+                * whenever a state variable changes react re render the component.
+
+
+          - useEffect Hook.
+
+

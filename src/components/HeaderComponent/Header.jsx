@@ -1,7 +1,7 @@
 
 import logo from "../../assets/Hunger.gif";
 
-const Header = () => {
+export const Header = () => {
   return (
     <div className="header">
       <div className="logo">
