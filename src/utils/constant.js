@@ -1,5 +1,8 @@
 //  Swiggy API :- 
 
+    //0. ProxyServer API:-
+    export const Proxy_API_URL = 'http://localhost:8080/api/restaurants?lat=28.6097528&lng=77.2024306&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING'
+
 
     // 1. Restaurant list API
 

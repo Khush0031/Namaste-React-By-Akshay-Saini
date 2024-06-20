@@ -1,67 +1,96 @@
-import { useState } from "react";
-import resData from "../../../mockData";
+import { useEffect, useState } from "react";
 import RestaurantCard from "../resCardComponent/RestaurantCard";
+import { API_URL, Proxy_API_URL } from "../../utils/constant";
+import ShimmerHome from "../ShimmerComponent/HomeShimmer";
 
 const Body = () => {
-  // console.log(resData);
+  //useState Hook.
 
-  // let listOfRestaurant = [
-  //   {
-  //     info: {
-  //       id: "16865",
-  //       name: "Pizza Hut 1",
-  //       cloudinaryImageId: "2b4f62d606d1b2bfba9ba9e5386fabb7",
-  //       costForTwo: "₹350 for two",
-  //       cuisines: ["Pizzas"],
-  //       avgRating: 3.1,
-  //     },
-  //   },
-  //   {
-  //     info: {
-  //       id: "16866",
-  //       name: "Pizza Hut 2",
-  //       cloudinaryImageId: "2b4f62d606d1b2bfba9ba9e5386fabb7",
-  //       costForTwo: "₹350 for two",
-  //       cuisines: ["Pizzas"],
-  //       avgRating: 4.2,
-  //     },
-  //   },
-  //   {
-  //     info: {
-  //       id: "16867",
-  //       name: "Pizza Hut 3",
-  //       cloudinaryImageId: "2b4f62d606d1b2bfba9ba9e5386fabb7",
-  //       costForTwo: "₹350 for two",
-  //       cuisines: ["Pizzas"],
-  //       avgRating: 4.1,
-  //     },
-  //   },
-  // ];
+  const [listOfRestaurant, setListOfRestaurant] = useState([]);
+  const [filteredRestaurant, setFilterRestaurant] = useState([]);
+  const [searchTxt, setSearchTxt] = useState("");
 
-  //useState Hooked.
+  //useEffect Hook.
+  const fetchData = async () => {
+    // console.log("useEffect Called");
+    const Data = await fetch(API_URL);
+    const resData = await Data.json();
+    setListOfRestaurant(
+      resData.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
+    );
+    console.log(resData);
+  };
 
-  const [listOfRestaurant, setListOfRestaurant] = useState(resData);
+  useEffect(() => {
+    // fetchData();
+    (async () => {
+      const Data = await fetch(API_URL);
+      const resData = await Data.json();
+      setListOfRestaurant(
+        resData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants
+      );
+      setFilterRestaurant(
+        resData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants
+      );
+    })();
+  }, []);
 
   const handleFilter = () => {
     console.log("Filter button clicked");
 
     const filterList = listOfRestaurant.filter((res) => {
-      return  res.info.avgRating > 4.4;
+      return res.info.avgRating > 4.4;
     });
     console.log(filterList);
     setListOfRestaurant(filterList);
   };
 
-  return ( 
+  // Conditional Rendering
+
+  // if(listOfRestaurant.length === 0) {
+  //   // return <h1>Loading...</h1>;
+  //   return <ShimmerHome/>;
+  // }
+
+  // Conditional Rendering using ternary operator
+
+  return listOfRestaurant.length === 0 ? (
+    <ShimmerHome />
+  ) : (
     <div className="body">
-      <div className="search">Search</div>
       <div className="filter">
+        <div className="search">
+          <input
+            type="text"
+            value={searchTxt}
+            className="search-box"
+            id="search"
+            onChange={(e) => {
+              setSearchTxt(e.target.value);
+            }}
+          />
+          <button
+            className="search-btn"
+            onClick={() => {
+              console.log("Search button clicked", searchTxt);
+
+              const filteredList = listOfRestaurant.filter((res) => {
+                res.info.name.toLowerCase().includes(searchTxt.toLowerCase());
+              });
+              setFilterRestaurant(filteredList);
+            }}
+          >
+            Search
+          </button>
+        </div>
         <button className="filter-btn" onClick={handleFilter}>
           Top Rated Restaurants
         </button>
       </div>
       <div className="res-container">
-        {listOfRestaurant.map((restaurant) => (
+        {filteredRestaurant.map((restaurant) => (
           <RestaurantCard resList={restaurant} key={restaurant.info.id} />
         ))}
       </div>

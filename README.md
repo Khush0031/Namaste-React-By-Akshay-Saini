@@ -286,7 +286,7 @@
         - we can use index's as a key but react official documents say don't use index as key 
         - But can be used for learning purpose
 
-## Lecture - 05 :- Let's Get Hooked.
+## Lecture - 05 :- Let's Get Hooked
 
     * Folder Structure.
         - Try to make modular
@@ -304,7 +304,48 @@
           - useState Hook. :-> State Variable in react.
                 * whenever a state variable changes react re render the component.
 
+          - useEffect Hook 
 
-          - useEffect Hook.
+## Lecture -06 :- Exploring the world
 
+    * Monolith :-  
+    * Microservice :-
 
+    * How We can fetch dynamically data from the api and populate our page dynamically :- 
+
+        * API :- Application Programming Interface
+        * REST API :- Representational State of Resource API
+        * HTTP Methods :-
+
+            * GET :- Get the data
+            * POST :- Create the data
+            * PUT :- Update the data
+            * DELETE :- Delete the data
+            * Axios :- Library to make HTTP request in react
+            * Fetch API :- Built in API in browser to make HTTP request
+
+        * Bad way to fetch data :- 
+
+            - as soon as page load -> call API -> Render the page with the new data.
+
+        * Good way to  fetch data :-
+
+            - as soon as page load -> Render the page -> call API -> Render again the page with new data.
+        
+        * CORS :- cross origin Resource Service
+
+        * useEffect Hook :- 
+            - It's a hook which is used to handle side effects in functional components.
+            - Take two argument's
+                1 :- callBack Function 
+                2 :- dependencies array.
+
+                e.g :- useEffect(() => {
+                    // Call Back Function
+                },[]);
+
+            - useEffect callBack Function Is call after a component render. 
+                - Body Component Render -> useEffect callBack Call -> Body Component again render.   
+
+        * Shimmer UI  :-  
+            - A Shimmer UI represent the page's actual UI so user can understand how quick the web or mobile app will load even before the content has shown up.

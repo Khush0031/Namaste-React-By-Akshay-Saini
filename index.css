@@ -44,11 +44,29 @@
     cursor: pointer;
 }
 
-.search {
-    padding: 24px;
-}
-
 .img {
     width: 100%;
 }
  
+
+.shimmer-container {
+    display: flex;
+}
+
+.shimmer-card {
+    margin: 20px;
+    width: 200px;
+    height: 300px;
+    background-color: rgb(165, 150, 150);
+}
+
+.login {
+    padding: 4px;
+    cursor: pointer;
+}
+
+.filter {
+    display: flex;
+    margin: 14px;
+    gap: 14
+}
