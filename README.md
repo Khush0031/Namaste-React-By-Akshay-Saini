@@ -221,8 +221,8 @@
 
             <RestaurantCard 
             img = "img-url"
-            resName= "Meghana Food" 
-            cuisine = "Biryani, North Indian,Asian" />
+            resName= "" 
+            cuisine = "" />
 
             <RestaurantCard 
             img = "img-url"
@@ -290,7 +290,7 @@
 
     * Folder Structure.
         - Try to make modular
-    * Two Type's Of Expor/Import.
+    * Two Type's Of Export/Import.
 
       - 1 :- Default Export/Import
       - 2 :- Named Export/Import
@@ -306,7 +306,7 @@
 
           - useEffect Hook 
 
-## Lecture -06 :- Exploring the world
+## Lecture - 06 :- Exploring the world
 
     * Monolith :-  
     * Microservice :-
@@ -349,3 +349,51 @@
 
         * Shimmer UI  :-  
             - A Shimmer UI represent the page's actual UI so user can understand how quick the web or mobile app will load even before the content has shown up.
+
+## Lecture - 07 :- Finding the path
+
+    * useEffect Hook :- 
+
+        - if we don't pass dependencies array that means useEffect is call on every render
+        - if we pass empty dependencies array that means useEffect is call only initial render only onces.
+        - if we pass some thing to dependencies array that means useEffect is call every time dependencies array is changed.
+
+    * Routes in react :- 
+        - React Router package in best to use to create routes.
+        - install :- npm i react-router-dom.
+
+    * How to use React Router DOM :- 
+        - /
+        - /about
+        - /contact etc.
+
+    * Routing configuration 
+        - use in Higher order components e.g :- (App.js)  
+        - import the {createBrowserRouter,RouterProvider}
+        - createBrowserRouter function return the router object
+        - createBrowserRouter Take's the List of objects (each object has  Path (which is route {/, /about, /contact}), Element to render (component), also have children routes and error)  
+        - RouterProvider component is actually provide routing configuration to our aap.
+            e.g :- <RouterProvider router={appRouter}/>
+        - React Router Provider have some inbuilt component i.e :-  {useRouteError}.
+
+    * Making Components intact According to routes 
+        - we can  use Outlet component to render the child routes.
+    * Linking to routes
+        - Never Ever use (a tag) because its reload hole page.
+        - use Link component from react-router-dom
+        - Link component take's two prop's
+            1. to (which is route path)
+            2. children (which is the text of the link)
+            e.g :- <Link to="/about">About</Link>
+        - Link component is used to navigate between routes.
+    * Type's of Routing in Web App :- 
+        1. Client Side Routing.
+        2. Server Side Routing.
+
+    * Dynamic Routes :- 
+        - Dynamic routes are used when we want to render different components based on some dynamic value.
+        - We can use colon (:) to specify dynamic routes.
+            - e.g :- /users/:id
+        - useParams hook is used to get the dynamic value from the route.
+        - useParams hook return an object with the dynamic value as key-value pair.
+            - e.g :- const {id} = useParams();
