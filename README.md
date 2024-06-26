@@ -397,3 +397,119 @@
         - useParams hook is used to get the dynamic value from the route.
         - useParams hook return an object with the dynamic value as key-value pair.
             - e.g :- const {id} = useParams();
+
+## Lecture - 08 :- Let's Get Classy
+
+    * Class Base Components : 
+        - Use in (ABOUT Component) to learn Class Component
+        - Class Base Components are used when we need to use lifecycle methods.
+        - User.jsx -> functional component
+        - UserClass.jsx -> Class Component.
+
+    * Create Class Component
+
+        - (Class Component) -> is a class which have the render method inside which we return a JSX.
+        e.g :- 
+        - (class) UserClass (extends) (React.Component){
+            render(){
+                return <h1>Class Component</h1>;
+            }
+        }
+        - (React.Component) :- is a class which is in react package.
+        - To import it :- import React From "react" or Just ()
+ 
+    * Passing Props to Class Component :- 
+        - <UserClass name={"Khush(Class)"}>
+        - inside a UserClass component we have (constructor) which receive the props
+        and inside constructor we must use super() method to use prop        
+        - e.g :- 
+            constructor(props) {
+                super(props);
+
+                console.log(props).
+            }   
+    * How to make State in Class Components.
+        - when ever a instance of the class is created we create state variable.
+        - we use (this.state) in constructor to create it  
+        - this.state is a big object which contain state variable 
+        e.g :- this.state = {
+            count : 0,
+        }
+    * How to Update the state variable in Class Base component. 
+        - Note :- Never Update the State Variable Directly
+        - this.setState is used to update the state variable in class Component  
+        - this.setState take object which contain the updated value for state.
+        e.g :-    this.setState({
+            count : this.state.count + 1;
+        })
+    * React Life Cycle Method :- 
+        Note :-  Loading the page  is same as ---> Mounting the page 
+        - When a CLass instance is created first constructor is call the render is call.
+        
+        - Parent Constructor is called --> Parent render is called ---> Child Constructor is called ---> Child render Is Called.
+
+
+        - ComponentDidMount method --> this method is called when the components are Mounted on the Page.
+
+        that means :- first components constructor is called --> components render is called ---> Components ComponentDidMount is Called.
+
+        - Note :- use Of the ComponentDidMount method  we Can call API.
+        
+        - What if We have Multiple child Components then how React Life Cycle Method work.
+            e.g :- let we have two child components.
+                - Parent constructor is called
+                - Parent render is called 
+                - Child1 constructor is called
+                - Child1 render Is called 
+                - Child2 constructor is Called
+                - Child2 render is called
+                - Child1 ComponentDidMount is Called
+                - Child2 ComponentDidMount id Called
+                - Parent ComponentDidMount is Called
+    * Why this Happen,because
+        React has two phases 
+            - 1. Render Phase
+                - constructor called.
+                - render called.
+            - 2. Commit Phase
+                - React Update the DOM and ref.
+                - componentDidMount is called.
+        This two Phase is work for all parent and child components.
+
+    * Calling API in Class Base Components.
+        - We can call API in componentDidMount method.
+        e.g :- currently using Github User Api.
+            - https://api.github.com/users/user_name. 
+
+        - What happen when this api call.
+          * ..........Mounting Cycle.......... 
+            - First Constructor is call.
+            - Then render is called.(with dummy data)
+            - <HTML DOM Update with dummy Data >
+            - Then componentDidMount is called.
+            - Then API is called.
+            - Then API response is set in state.(updated value).
+        * ..........Update Cycle..........
+            - render is called.(with API response data, Updated Data).
+            - <HTML DOM is updated with new API response  Data>
+            - Then componentDidUpdate Call.
+        * ..........Unmounting Cycle..........
+            - unmounting means  when the data is removing 
+            e.g :- when we switch from one page to another.
+            - Then componentWillUnmount is called.
+        Note :- What we will do in unmounting.
+            - the major fault is when we moving from one page to another it not reloading the page it's just changing the components(or reRender the component).
+            - Let's say we set the setInterval in componentDidMount, and whenEver the page changes it's not getting clear
+            - So we have to clear the setInterval in componentWillUnmount method.
+            - So we will clear the API call in componentWillUnmount method.
+            - Because if we don't clear the API call then it will be running in background and it will be consuming the memory.
+        Note :- What will Have to do same in useEffect.
+                - we have to return the  Function inside the useEffect.Which Help in cleanUp or unMounting.
+                e.g :- useEffect(() {
+                    <!-- API Call -->
+
+                    return () => {
+                        <!-- Clear API Call -->
+                    }
+                },[]);
+
